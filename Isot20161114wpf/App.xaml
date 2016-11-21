@@ -1,0 +1,9 @@
+﻿<Application x:Class="Isot20161114wpf.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Isot20161114wpf"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <local:ClassSchool x:Key="viewModel" />
+    </Application.Resources>
+</Application>

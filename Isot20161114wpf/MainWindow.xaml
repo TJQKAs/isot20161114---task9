@@ -1,0 +1,61 @@
+﻿<Window x:Class="Isot20161114wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Isot20161114wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{Binding Source={StaticResource viewModel}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="2">
+            <Label Content=" Список всех групп студентов" TextElement.FontWeight="Bold" HorizontalContentAlignment="Center" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <Label Content="Список успешных групп" TextElement.FontWeight="Bold" HorizontalContentAlignment="Center"/>
+        </StackPanel>
+        <StackPanel x:Name="stcp" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
+            <TextBox Text="{Binding Path=NumberOfClasses, UpdateSourceTrigger=PropertyChanged}" Width="40" Margin="10 0 0 0"/>
+            <TextBox Text="{Binding Path=StudNumb, UpdateSourceTrigger=PropertyChanged}" Width="40" Margin="10 0 0 0"/>
+            <TextBox Text="{Binding Path=MinScore, UpdateSourceTrigger=PropertyChanged}" Width="40" Margin="10 0 0 0"/>
+        </StackPanel>
+        <StackPanel x:Name="stcp4" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
+            <TextBlock  Width="190" Margin="55 0 0 0" Text="Кол-во классов" TextAlignment="Left" />
+            <TextBlock  Width="190" Margin="55 0 0 0" Text="Кол-во студентов" />
+            <TextBlock  Width="190" Margin="55 0 0 0" Text="Минимальный % успешных сдач" />
+        </StackPanel>
+            <StackPanel x:Name="stcp1" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right">
+            <Button Height="25" Width="80" Margin="0 5 0 0" Content="Старт" Command="{Binding AddFileCommand}"/>
+        </StackPanel>
+        <SelectiveScrollingGrid x:Name="stcp2" Grid.Column="0" Grid.Row="3">
+            <ListBox x:Name="lb1" ItemsSource="{Binding SchoolList}"/>
+        </SelectiveScrollingGrid>
+        <ScrollViewer x:Name="stcp3" Grid.Column="1" Grid.Row="3">
+            <ListBox x:Name="lb2" ItemsSource="{Binding FilterSchoolList}"/>
+        </ScrollViewer>
+
+        <StackPanel x:Name="stcp6" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left">
+            <TextBlock Text="{Binding Path=StudCount, UpdateSourceTrigger=PropertyChanged}" Width="40" Margin="10 0 0 0" TextAlignment="Right"/>
+            <TextBlock Text="{Binding Path=CountSuccessStud, UpdateSourceTrigger=PropertyChanged}" Width="40" Margin="10 0 0 0" TextAlignment="Right"/>
+            <TextBlock Text="{Binding Path=FilterSchoolList.Count, UpdateSourceTrigger=PropertyChanged}" Width="40" Margin="10 0 0 0" TextAlignment="Right"/>
+        </StackPanel>
+        <StackPanel x:Name="stcp7" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left">
+            <TextBlock  Width="190" Margin="55 0 0 0" Text="Всего студентов" TextAlignment="Left" />
+            <TextBlock  Width="190" Margin="55 0 0 0" Text="Всего успешных студентов" />
+            <TextBlock  Width="190" Margin="55 0 0 0" Text="Всего успешных групп" />
+        </StackPanel>
+
+
+    </Grid>
+</Window>
