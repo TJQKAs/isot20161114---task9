@@ -111,11 +111,17 @@ namespace Isot20161114wpf
             get
             {
                 return addFileCommand ??
+
+                   
+
                   (addFileCommand = new RelayCommand(param =>
                   {
                       try
                       {
-                          int avar = 0;
+                          Task task = new Task(() =>
+                          {
+
+                              int avar = 0;
                           int bvar = 0; 
                           SchoolList = fillUniversity(out avar, out bvar);
                           StudCount = avar;
@@ -123,12 +129,18 @@ namespace Isot20161114wpf
                           Filter.NoteFile(SchoolList, "full.txt");
                           //CountSuccessGroup = Filter.GetSomeStatData(FilterSchoolList);
                           FilterSchoolList = Filter.WriteFilterCopyFile(MinScore, "full.txt", "short.txt");
+                          });
+                          task.Start();
+
                       }
                       catch (Exception ex)
                       {
                          
                       }
                   }));
+
+
+
             }
         }
         public ObservableCollection<string> fillUniversity(out int allstud, out int passStud)
