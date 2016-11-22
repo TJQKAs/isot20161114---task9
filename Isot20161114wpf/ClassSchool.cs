@@ -118,20 +118,17 @@ namespace Isot20161114wpf
                   {
                       try
                       {
-                          Task task = new Task(() =>
+                          Task task = new Task(async () =>
                           {
-
                               int avar = 0;
-                          int bvar = 0; 
-                          SchoolList = fillUniversity(out avar, out bvar);
-                          StudCount = avar;
-                          CountSuccessStud = bvar;
-                          Filter.NoteFile(SchoolList, "full.txt");
-                          //CountSuccessGroup = Filter.GetSomeStatData(FilterSchoolList);
-                          FilterSchoolList = Filter.WriteFilterCopyFile(MinScore, "full.txt", "short.txt");
+                              int bvar = 0;
+                              SchoolList = fillUniversity(out avar, out bvar);
+                              StudCount = avar;
+                              CountSuccessStud = bvar;
+                              Filter.NoteFile(SchoolList, "full.txt");
+                              FilterSchoolList = await Filter.WriteFilterCopyFile(MinScore, "full.txt", "short.txt");
                           });
                           task.Start();
-
                       }
                       catch (Exception ex)
                       {

@@ -56,25 +56,20 @@ namespace Isot20161114wpf
             }
         }
 
-        public static ObservableCollection<string> WriteFilterCopyFile(double score, string file_name, string file_to_copy)
+        public static async Task<ObservableCollection<string>> WriteFilterCopyFile(double score, string file_name, string file_to_copy)
         {
-            ObservableCollection<string> total = new ObservableCollection<string>();        
-            total = ReadFile(score, file_name);
-            List<string> listoftotal = total.ToList<string>();
-            using (StreamWriter strw = new StreamWriter(File.Open(file_to_copy,FileMode.OpenOrCreate))) 
-            {
-                listoftotal.ForEach(x => strw.WriteLine(x));
-                strw.Flush();
-            }
-            return total;
+                 var result = await Task.Run<ObservableCollection<string>>(() => {
+                ObservableCollection<string> total = new ObservableCollection<string>();
+                total = ReadFile(score, file_name);
+                List<string> listoftotal = total.ToList<string>();
+                using (StreamWriter strw = new StreamWriter(File.Open(file_to_copy, FileMode.OpenOrCreate)))
+                {
+                    listoftotal.ForEach(x => strw.WriteLine(x));
+                    strw.Flush();
+                }
+                return total;
+            });
+            return result;
         }
-
-        //public static int GetSomeStatData(ObservableCollection<string> x)
-        //{
-        //    int y = x.Count;
-        //    return y;
-        //}
-
-
     }
 }
